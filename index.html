@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>When You Can't Sleep...</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            font-family: 'Georgia', serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            color: #fff;
+        }
+
+        .container {
+            display: flex;
+            gap: 20px;
+            flex-wrap: nowrap;
+            justify-content: center;
+            max-width: 1400px;
+            overflow-x: auto;
+            padding: 20px 0;
+        }
+
+        .card-wrapper {
+            width: 250px;
+            height: 350px;
+            perspective: 1000px;
+            flex-shrink: 0;
+        }
+
+        .card {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.6s;
+            cursor: pointer;
+        }
+
+        .card.flipped {
+            transform: rotateY(180deg);
+        }
+
+        .card-face {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 25px;
+            box-sizing: border-box;
+        }
+
+        .card-front {
+            background: linear-gradient(145deg, #2d4059, #1e2936);
+            border: 2px solid #3a5a7a;
+        }
+
+        .card-back {
+            background: linear-gradient(145deg, #3a5a7a, #2d4059);
+            transform: rotateY(180deg);
+            border: 2px solid #5a7a9a;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .main-number {
+            font-size: 72px;
+            color: #ffd700;
+            font-weight: bold;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+        }
+
+        .card5 .main-number {
+            font-size: 80px;
+            margin-bottom: 10px;
+        }
+
+        .card-title {
+            font-size: 16px;
+            text-align: center;
+            color: #a8dadc;
+            margin-bottom: 5px;
+            font-weight: normal;
+        }
+
+        .card-subtitle {
+            font-size: 12px;
+            color: #7a9aaa;
+            text-align: center;
+        }
+
+        .card-back p {
+            line-height: 1.8;
+            font-size: 14px;
+            color: #e0f0ff;
+            margin: 0;
+        }
+
+        .flip-hint {
+            position: absolute;
+            bottom: 15px;
+            font-size: 11px;
+            color: #5a7a9a;
+        }
+
+        .stars {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 3s infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0; }
+            50% { opacity: 1; }
+        }
+
+        /* Card specific colors */
+        .card1 .card-front { background: linear-gradient(145deg, #3a4a6a, #2a3a5a); }
+        .card2 .card-front { background: linear-gradient(145deg, #4a3a5a, #3a2a4a); }
+        .card3 .card-front { background: linear-gradient(145deg, #2a4a5a, #1a3a4a); }
+        .card4 .card-front { background: linear-gradient(145deg, #3a3a6a, #2a2a5a); }
+        .card5 .card-front { 
+            background: linear-gradient(145deg, #5a2a2a, #4a1a1a); 
+            border: 2px solid #8a3a3a;
+        }
+        .card5 .card-back {
+            background: linear-gradient(145deg, #6a3a3a, #5a2a2a);
+            border: 2px solid #9a4a4a;
+        }
+
+        .last-resort-label {
+            background: #8a3a3a;
+            color: #fff;
+            padding: 5px 15px;
+            border-radius: 15px;
+            font-size: 12px;
+            margin-top: 10px;
+            letter-spacing: 1px;
+        }
+
+        h3 {
+            color: #a8dadc;
+            margin: 0 0 15px 0;
+            font-size: 18px;
+            font-weight: normal;
+        }
+    </style>
+</head>
+<body>
+    <div class="stars" id="stars"></div>
+    
+    <div class="container">
+        <!-- Card 1 -->
+        <div class="card-wrapper">
+            <div class="card card1" onclick="flipCard(this)">
+                <div class="card-face card-front">
+                    <div class="main-number">#1</div>
+                    <span class="flip-hint">Click to flip</span>
+                </div>
+                <div class="card-face card-back">
+                    <h3>I owe you...</h3>
+                    <p>1 cute photo + sentence of a memory I cherish between us so you can think of that and it hopefully let's you fall asleep! &lt;3</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="card-wrapper">
+            <div class="card card2" onclick="flipCard(this)">
+                <div class="card-face card-front">
+                    <div class="main-number">#2</div>
+                    <span class="flip-hint">Click to flip</span>
+                </div>
+                <div class="card-face card-back">
+                    <h3>I owe you...</h3>
+                    <p>1 song I've been saving that is really calming and could help!</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="card-wrapper">
+            <div class="card card3" onclick="flipCard(this)">
+                <div class="card-face card-front">
+                    <div class="main-number">#3</div>
+                    <span class="flip-hint">Click to flip</span>
+                </div>
+                <div class="card-face card-back">
+                    <h3>I owe you...</h3>
+                    <p>The most mundane story about my day (what I had for lunch, how I organized my socks, etc.) until you fall asleep</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="card-wrapper">
+            <div class="card card4" onclick="flipCard(this)">
+                <div class="card-face card-front">
+                    <div class="main-number">#4</div>
+                    <span class="flip-hint">Click to flip</span>
+                </div>
+                <div class="card-face card-back">
+                    <h3>I owe you...</h3>
+                    <p>Text me what you WISH you were dreaming about, and I'll text you back turning it into an absurd next few things and then together in the morning we can discuss if that happened!</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 5: LAST RESORT -->
+        <div class="card-wrapper">
+            <div class="card card5" onclick="flipCard(this)">
+                <div class="card-face card-front">
+                    <div class="main-number">💀</div>
+                    <h2 class="card-title">Emergency Option</h2>
+                    <div class="last-resort-label">LAST RESORT</div>
+                    <span class="flip-hint">Click to flip</span>
+                </div>
+                <div class="card-face card-back">
+                    <h3>I owe you...</h3>
+                    <p>1 live performance of a lullaby of your choosing<br><br>(this is going to be so freaking embarrassing haha this is for LAST RESORT ONLY)</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function flipCard(card) {
+            card.classList.toggle('flipped');
+        }
+
+        // Create stars
+        function createStars() {
+            const starsContainer = document.getElementById('stars');
+            for (let i = 0; i < 50; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.animationDelay = Math.random() * 3 + 's';
+                starsContainer.appendChild(star);
+            }
+        }
+
+        createStars();
+    </script>
+</body>
+</html>
